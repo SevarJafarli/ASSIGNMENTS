@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include<stdbool.h>
 void printMaze(char **maze, const int HT, const int WD); // prints the maze
 
-bool solveMaze(char **maze, const int HT, const int WD, int x, int y); // draws a path to the exit on the maze string
+int solveMaze(char **maze, const int HT, const int WD, int x, int y); // draws a path to the exit on the maze string
 
 
 
@@ -36,31 +35,31 @@ int main(){
 //Assume the destination as *
 
 
-bool solveMaze(char **maze, const int HT, const int WD, int x, int y){
+int solveMaze(char **maze, const int HT, const int WD, int x, int y){
     if(x<0 || x>=WD || y<0 || y>=HT){
-        return false;                 //if x,y outside of maze return false
+        return 0;                 //if x,y outside of maze return false
     }
 
         if(maze[y][x]=='*'){
-            return true;             //if x,y reached destination return true
+            return 1;             //if x,y reached destination return true
     }
         if(maze[y][x]=='#' || maze[y][x]=='.'){
-        return false;                //if x,y is blocked by '#' or '.' return false
+        return 0;                //if x,y is blocked by '#' or '.' return false
     }
 
     maze[y][x]='.';    //draws path with '.'
 
-    if(solveMaze(maze, HT, WD, x, y+1)==true){
-        return true;  //South
+    if(solveMaze(maze, HT, WD, x, y+1)==1){
+        return 1;  //South
     }
-    if(solveMaze(maze, HT, WD, x+1, y)==true){
-        return true;  //East
+    if(solveMaze(maze, HT, WD, x+1, y)==1){
+        return 1;  //East
    }
-    if(solveMaze(maze, HT, WD, x, y-1)==true){
-        return true;  //North
+    if(solveMaze(maze, HT, WD, x, y-1)==1){
+        return 1;  //North
     }
-    if(solveMaze(maze, HT, WD, x-1, y)==true){
-        return true;  //West
+    if(solveMaze(maze, HT, WD, x-1, y)==1){
+        return 1;  //West
     }
 
     maze[y][x]=' ';  // replaces '.' with ' ' if '*' is not found
