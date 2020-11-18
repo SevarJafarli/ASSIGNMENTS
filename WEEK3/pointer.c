@@ -20,6 +20,9 @@ void swapStrings(char *destination, char *source){
     int lenDest=sizeof(destination)/sizeof(char);
     int lenSo=sizeof(source)/sizeof(char);
 
+    fgets(*destination);
+    fgets(*source);
+
     for(int i=0; i<lenDest; i++){
         temp[i]=destination[i];
     }
@@ -28,7 +31,7 @@ void swapStrings(char *destination, char *source){
         destination[i]=source[i];
     }
 
-    for(int i; i<lenDest; i++){
+    for(int i=0; i<lenDest; i++){
         source[i]=temp[i];
     }
 }
